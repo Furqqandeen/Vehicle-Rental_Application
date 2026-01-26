@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        {% for vehicle in vehicles  %}
+            <div class="contain">
+                <a href="{% url 'vehicles:vehiclez' vehicle.id%}" class="card-link">
+                    <img src="{{ vehicle.image.url }}" alt="{{ vehicle.title }}">
+                    <h4 style="text-align:center; margin:6px 0;">NAME: {{ vehicle.title }}</h4>
+                    <h4 style="text-align:center; margin:6px 0;">TYPE: {{ vehicle.type }}</h4>
+                    <h5 style="text-align:center; margin:6px 0;">PRICE: {{ vehicle.price }}/{{ vehicle.price_type }}</h5>
+                </a>
+
+                <a href="{% url 'vehicles:vehiclez' vehicle.id %}">
+                    <button type="button">Rent Now</button>
+                </a>
+            </div>
+
+        {% endfor %}
+    </div>
+    {% endblock content %}
+
+    
+
+
+    
+
+
+

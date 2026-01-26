@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block extra_css %}
+<style>
+    .category {
+        margin-bottom: 0 !important;
+    }
+
+    .about-header {
+        background: linear-gradient(135deg, #0a5c47 0%, #4CAF50 100%);
+        color: white;
+        padding: 60px 20px;
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: -60px;
+    }
+
+    .about-header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        font-weight: 700;
+    }
+
+    .about-container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 0 auto 40px;
+        padding: 40px;
+        background-color: white;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border-radius: 12px;
+    }
+
+    .about-section {
+        margin-bottom: 40px;
+    }
+
+    .about-section h2 {
+        color: #0a5c47;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        border-bottom: 3px solid #4CAF50;
+        padding-bottom: 10px;
+    }
+
+    .about-section p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .about-section ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .about-section ul li {
+        padding: 12px 0 12px 35px;
+        position: relative;
+        font-size: 1.05em;
+        color: #555;
+    }
+
+    .about-section ul li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 1.3em;
+    }
+
+    .founder-card {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        background: linear-gradient(135deg, #e7f5e6 0%, #f0faf0 100%);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(76, 175, 80, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .founder-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .founder-card img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #4CAF50;
+    }
+
+    .founder-info h3 {
+        color: #0a5c47;
+        font-size: 1.6em;
+        margin: 0 0 5px 0;
+    }
+
+    .founder-info .title {
+        color: #4CAF50;
+        font-weight: 600;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .founder-info p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    @media(max-width: 768px){
+        .about-header h1 {
+            font-size: 2em;
+        }
+
+        .about-container {
+            padding: 25px;
+        }
+
+        .founder-card {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .founder-card img {
+            width: 120px;
+            height: 120px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-header">
+    <h1>About Rental App</h1>
+</div>
+
+<div class="about-container">
+    <div class="about-section">
+        <h2>Who We Are</h2>
+        <p>Rental App is a modern platform designed to make renting vehicles, homes, and equipment easier than ever. We focus on providing a smooth, reliable, and safe rental experience for everyone.</p>
+    </div>
+
+    <div class="about-section">
+        <h2>Our Mission</h2>
+        <p>Our mission is to simplify the rental process by connecting users with verified providers quickly and safely. We believe renting should be stress-free, transparent, and accessible to all.</p>
+    </div>
+
+    <div class="about-section">
+        <h2>What We Offer</h2>
+        <ul>
+            <li>Wide selection of vehicles, properties, and equipment for rent.</li>
+            <li>Easy and secure booking options.</li>
+            <li>User-friendly mobile and web app interface.</li>
+            <li>Verified providers to ensure quality and safety.</li>
+        </ul>
+    </div>
+
+    <div class="about-section">
+        <h2>Founder</h2>
+        <div class="founder-card">
+            <img src="https://via.placeholder.com/150" alt="Furqqan Deen R">
+            <div class="founder-info">
+                <h3>Furqqan Deen R</h3>
+                <p class="title">Founder & CEO</p>
+                <p>Passionate about creating seamless rental experiences, Furqqan started Rental App to make renting easy, reliable, and enjoyable for everyone.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

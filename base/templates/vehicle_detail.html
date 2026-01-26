@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/vehicle_detail.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="vehicle-detail-container">
+
+    <h2 class="vehicle-title">Vehicle Overview</h2>
+
+    <div class="vehicle-detail-content">
+
+        <div class="vehicle-left">
+            <img src="{{ vehicle.image.url }}" alt="{{ vehicle.title }}">
+        </div>
+
+        <div class="vehicle-right">
+            <h4>NAME: {{ vehicle.title }}</h4>
+            <h4>TYPE: {{ vehicle.type }}</h4>
+            <h5>PRICE: {{ vehicle.price }} / {{ vehicle.price_type }}</h5>
+            <p>Description: {{ vehicle.description }}</p>
+
+            <a href="{% url 'vehicles:rules' vehicle.id %}">
+                <button class="rent-btn">Rent Now</button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

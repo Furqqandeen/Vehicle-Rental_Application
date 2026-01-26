@@ -1,0 +1,1 @@
+from .populates_category import Command as PopulateCategoryCommand

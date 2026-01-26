@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rental Successful</title>
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
+</head>
+<body>
+
+<div class="success-container">
+    <div class="success-card">
+        <div class="icon">✅</div>
+
+        <h1>Vehicle Rented Successfully!</h1>
+        <p>
+            Your rental has been confirmed.  
+            Thank you for choosing our service 🚗
+        </p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="btn-group">
+            <a href="{% url 'vehicles:home' %}" class="btn btn-primary">
+                Back to Home
+            </a>
+            <a href="{% url 'vehicles:my_rentals' %}" class="btn btn-secondary">
+                View My Rentals
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

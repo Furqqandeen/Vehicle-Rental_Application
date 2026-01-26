@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.rental-container {
+    min-height: calc(100vh - 120px); /* adjust for navbar height */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* start from top instead of center */
+    padding: 60px 20px 20px 20px; /* top padding pushes card down slightly */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.rental-card {
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: white;
+}
+.btn-primary {
+    background-color: #0a5c47;
+    border-color: #4caf50;
+}
+
+.btn-primary:hover {
+    background-color: #45a049; /* slightly darker on hover */
+    border-color: #45a049;
+}
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="rental-container">
+    <div class="card rental-card">
+        <h3 class="text-center mb-4">Confirm Rental</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Delivery Address</label>
+                <textarea name="delivery_address" class="form-control" rows="3"
+                          placeholder="Enter Your Delivery Address" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Pickup Date & Time</label>
+                <input type="datetime-local" name="pickup_time" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Return Date & Time</label>
+                <input type="datetime-local" name="return_time" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Confirm & Rent
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

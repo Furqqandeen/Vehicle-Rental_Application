@@ -1,0 +1,16 @@
+# Virtual Environment
+env/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment variables (MySQL credentials)
+.env
+
+# Django media (uploads)
+media/
+
+# Editor
+.vscode/

@@ -1,0 +1,562 @@
+/* */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px 0;
+}
+
+/*This is for footer */
+.site-footer {
+    background-color: #0a5c47;
+    color: #fff;
+    padding: 40px 20px 20px;
+    margin-top: auto;
+    width: 100%;
+}
+
+
+/* This is for navigation*/
+.nav {
+    height: 100px;
+    width: 100%;
+    background-color: #0a5c47;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 15px;
+}
+
+/* navigation logo*/
+.nav-img {
+   height: 100px;      
+    width: auto;       
+    object-fit: contain;
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.35));
+
+}
+
+/* search bar */ 
+.search-bar{
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input{
+    width: 400px;
+    padding: 10px 10px;
+    border: none;
+    outline: none;
+    border-radius: 4px 0 0 4px;
+    
+}
+
+.search-bar button{
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    background: #4caf50;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+/* Vehicles categories*/
+.category{
+    height: 60px;
+    width: 100vw;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-style: oblique;
+    font-weight: bold;
+    
+}
+
+.category a{
+      
+    
+    border: 2px solid black;
+    padding: 10px 30px;
+    margin-top: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.category a:hover{
+    background-color:#4caf50 ;
+    color: white;
+    transform: scale(1.05); 
+}
+
+.category a,nav a{
+    text-decoration: none;
+    color: #121212;
+}
+
+
+/*home.html &detail.html vehicle manin container */
+.container{
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 30px;
+    padding: 40px;
+    justify-content: center;
+    
+
+}
+/* home.html vehicle single single container */
+.contain{
+    
+    width: 280px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+}
+
+
+.contain:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.contain img{
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    
+    border-radius: 8px;
+
+}
+
+.contain a button {
+    background-color: #0a5c47; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-bottom: auto;
+}
+
+.contain a button:hover {
+    background-color: #45a049; 
+    transform: scale(1.05);    
+}
+
+.contain a.card-link,
+.contain a.card-link:hover,
+.contain a.card-link:visited,
+.contain a.card-link:active {
+    text-decoration: none;
+}
+
+.contain a.card-link h4,
+.contain a.card-link h5 {
+    text-decoration: none;
+    color: #000;
+}
+
+
+
+
+/* this code belongs to search.html */
+.search-message {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.search-message h2{
+    color: #0a7c5f;
+}
+
+.no-vehicles {
+    margin-top: 20px;
+    font-size: 18px;
+    
+}
+
+.search-query {
+    color: #4CAF50;     
+    font-weight: bold;
+}
+
+/* login buttons*/
+.login button{
+    border: 2px solid transparent;
+    padding: 6px;
+    border-radius: 8px;
+    background-color:#4caf50;
+    color: #f9f9f9;
+    cursor: pointer;
+}
+/* Messages - Fixed positioning */
+.messages {
+    position: fixed;
+    top: 110px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 400px;
+}
+
+.alert {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.3s ease;
+    min-width: 300px;
+}
+
+.alert.success,
+.alert.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.alert.error,
+.alert.alert-error,
+.alert.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.alert .close {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: inherit;
+    opacity: 0.5;
+    margin-left: 15px;
+    transition: opacity 0.3s ease;
+    background: none;
+    border: none;
+}
+
+.alert .close:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.signin-btn, .login-btn, .signup-btn, .logout-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.signin-btn, .login-btn {
+    background-color: #fff;
+    color: #0a5c47;
+    border: 2px solid #0a5c47;
+}
+
+.signin-btn:hover, .login-btn:hover {
+    background-color: #0a5c47;
+    color: #fff;
+}
+
+.signup-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+.logout-btn {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #da190b;
+}
+
+
+
+
+.welcome-text {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Dropdown styles */
+.welcome-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.welcome-text-hover {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 16px;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    z-index: 1;
+    margin-top: 0px;
+    padding-top: 5px;
+}
+
+.welcome-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-signin-btn {
+    color: #0a5c47;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-signin-btn:hover {
+    background-color: #0a5c47;
+    color: #fff;
+}
+
+
+/* footer*/
+.site-footer {
+    background-color: #0a5c47;
+    color: #fff;
+    padding: 40px 20px 20px;
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.footer-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.footer-copyright {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-copyright p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .site-footer {
+        padding: 30px 15px 15px;
+    }
+}
+
+/* Blur overlay background */
+.logout-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+/* Centered modal box */
+.logout-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    min-width: 350px;
+    text-align: center;
+}
+
+.logout-modal h3 {
+    margin: 0 0 15px 0;
+    color: #0a5c47;
+    font-size: 24px;
+}
+
+.logout-modal .confirm-text {
+    margin: 0 0 25px 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.logout-modal .modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.logout-modal .confirm-yes {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-modal .confirm-yes:hover {
+    background-color: #c82333;
+}
+
+.logout-modal .confirm-no {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-modal .confirm-no:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .logout-modal {
+        min-width: 90%;
+        padding: 25px 20px;
+    }
+    
+    .logout-modal .modal-buttons {
+        flex-direction: column;
+    }
+}
+
+
+.my-rentals-btn {
+    background-color:#0a5c47;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+
+}
+
+.my-rentals-btn:hover {
+    background:#45a049;
+    color:white;
+    border: 2px solid #4caf50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.my-rentals-btn:active {
+    transform: scale(0.97);
+}

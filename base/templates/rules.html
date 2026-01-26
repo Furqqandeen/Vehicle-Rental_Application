@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Rules & Regulations{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/rules.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="rules-container">
+    <h2>Vehicle Rental Rules & Regulations</h2>
+
+    <ol>
+        <li>The renter must possess a valid driving license at the time of vehicle pickup.</li>
+        <li>The rented vehicle should be used only for personal purposes and not for commercial activities.</li>
+        <li>The renter is responsible for any traffic violations, fines, or penalties during the rental period.</li>
+        <li>The vehicle must be returned on or before the agreed time to avoid additional charges.</li>
+        <li>Smoking, alcohol consumption, or illegal activities inside the vehicle are strictly prohibited.</li>
+        <li>Any damage to the vehicle during the rental period must be reported immediately.</li>
+        <li>The renter is liable for repair costs in case of damage due to negligence.</li>
+        <li>Fuel level at the time of return should be the same as at the time of pickup.</li>
+        <li>Subleasing or allowing unauthorized persons to drive the vehicle is not allowed.</li>
+        <li>Failure to follow the rules may result in cancellation of the rental without refund.</li>
+    </ol>
+
+    <div class="accept-box">
+        <label>
+            <input type="checkbox" id="acceptRules" required>
+            I have read and agree to the rules and regulations
+        </label>
+    </div>
+
+    <form action="{% url 'vehicles:rental' vehicle.id %}" method="get">
+        <button type="submit" id="proceedBtn" class="btn" disabled>Proceed</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/rules.js' %}"></script>
+{% endblock %}

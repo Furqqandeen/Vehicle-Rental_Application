@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Rentals</title>
+    <link rel="stylesheet" href="{% static 'css/my_rentals.css' %}">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h2> My Rentals🚗</h2>
+        <a href="{% url 'vehicles:home' %}" class="home-btn">
+            ⬅ Back to Home
+        </a>
+    </div>
+
+    <!-- RENTALS LIST -->
+    {% if rentals %}
+        <div class="rentals-grid">
+            {% for rental in rentals %}
+                <div class="rental-card">
+
+                    <div class="image-box">
+                        <img src="{{ rental.vehicle.image.url }}" alt="{{ rental.vehicle.name }}">
+                        <span class="status {{ rental.status }}">
+                            {{ rental.status|title }}
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <h3>{{ rental.vehicle.name }}</h3>
+
+                        <div class="info">
+                            <p><strong>Pickup:</strong> {{ rental.pickup_time|date:"d M Y, h:i A" }}</p>
+                            <p><strong>Return:</strong> {{ rental.return_time|date:"d M Y, h:i A" }}</p>
+                            <p><strong>Address:</strong> {{ rental.delivery_address }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>You haven’t rented any vehicles yet 🚙</p>
+            <a href="{% url 'vehicles:home' %}" class="browse-btn">
+                Browse Vehicles
+            </a>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
