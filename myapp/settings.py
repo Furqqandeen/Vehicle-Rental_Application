@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-q*m7ntj31#9gljx+vs!%b55z$omdpejcvmsoxx00v&6*nm8!8v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
 ]
 
 ROOT_URLCONF = 'myapp.urls'
@@ -72,18 +74,14 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
+import dj_database_url
+import os
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rental',
-        'USER':'root',
-        'PASSWORD':'Password' ,
-        'HOST':'localhost',
-        'PORT':'3306'
-        
-    }
+    "default": dj_database_url.config(
+        default="sqlite:///" + str(BASE_DIR / "db.sqlite3")
+    )
 }
+
 
 
 # Password validation
@@ -122,6 +120,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[BASE_DIR/'static']
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 
 MEDIA_URL='/media/'
