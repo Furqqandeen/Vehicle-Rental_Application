@@ -18,7 +18,7 @@ class Vehicle(models.Model):
     location = models.CharField(max_length=200, default='Chennai')
     price=models.IntegerField() 
     price_type=models.CharField(max_length=10,choices=price_choices,default='hour')
-    description=models.TextField(max_length=150,default='''Our rental vehicles are well-maintained, reliable, and designed to give you a smooth and comfortable journey. 
+    description=models.TextField(max_length=5000,default='''Our rental vehicles are well-maintained, reliable, and designed to give you a smooth and comfortable journey. 
                                  Whether you need a vehicle for daily travel, business trips, or weekend getaways, we offer flexible rental plans at affordable prices.
                                  All vehicles are regularly serviced to ensure safety and performance.''')
     
