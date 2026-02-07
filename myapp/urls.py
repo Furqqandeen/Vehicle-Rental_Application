@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("home/",include("base.urls",namespace='vehicles')),
+    path("",include("base.urls",namespace='vehicles')),
     path('admin/', admin.site.urls),
 ]
 
