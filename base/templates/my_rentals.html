@@ -29,6 +29,11 @@
                         <span class="status {{ rental.status }}">
                             {{ rental.status|title }}
                         </span>
+                        {% if rental.status != 'cancelled' and rental.status != 'completed' %}
+                        <button class="cancel-btn" onclick="showCancelPopup({{ rental.id }})">
+                            Cancel
+                        </button>
+                        {% endif %}
                     </div>
 
                     <div class="card-body">
@@ -54,6 +59,78 @@
     {% endif %}
 
 </div>
+
+<!-- CANCEL CONFIRMATION POPUP -->
+<div id="cancelPopup" class="popup-overlay">
+    <div class="popup-content">
+        <h3>Cancel Rental?</h3>
+        <p>Are you sure you want to cancel this rental?</p>
+        <div class="popup-buttons">
+            <button class="btn-confirm" onclick="confirmCancel()">Yes, Cancel</button>
+            <button class="btn-close" onclick="closePopup()">No, Keep It</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentRentalId = null;
+
+    function showCancelPopup(rentalId) {
+        currentRentalId = rentalId;
+        document.getElementById('cancelPopup').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('cancelPopup').style.display = 'none';
+        currentRentalId = null;
+    }
+
+    function confirmCancel() {
+        if (currentRentalId) {
+            fetch(`/rentals/${currentRentalId}/cancel/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Failed to cancel rental. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        }
+        closePopup();
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    document.getElementById('cancelPopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closePopup();
+        }
+    });
+</script>
 
 </body>
 </html>

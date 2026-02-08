@@ -24,7 +24,8 @@ urlpatterns = [
     path('vehicle/<int:vehicle_id>/rental/', views.rental_form, name='rental'),
     path('success/',views.success_page,name='success'),
     path('my_rentals/',views.my_rentals,name='my_rentals'),
-    path('vehicle_detail/<int:vehicle_id>/',views.vehicle_detail,name='vehiclez')
+    path('vehicle_detail/<int:vehicle_id>/',views.vehicle_detail,name='vehiclez'),
+    path('rentals/<int:rental_id>/cancel/', views.cancel_rental, name='cancel_rental'),
     
    
     

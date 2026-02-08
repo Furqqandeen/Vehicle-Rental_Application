@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class Category(models.Model):
@@ -41,7 +42,8 @@ class Profile(models.Model):
 
     
     
-    
+
+
 class Rental(models.Model):
     
     STATUS_CHOICES = [
@@ -86,4 +88,22 @@ class Rental(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.vehicle}"
     
-
+    def update_status(self):
+        """Automatically update status based on current time"""
+        # Don't change cancelled or completed rentals
+        if self.status == 'cancelled' or self.status == 'completed':
+            return
+        
+        now = timezone.now()
+        
+        if now < self.pickup_time:
+            # Before pickup time - rental is pending
+            self.status = 'pending'
+        elif self.pickup_time <= now < self.return_time:
+            # Between pickup and return time - rental is active
+            self.status = 'active'
+        elif now >= self.return_time:
+            # After return time - rental is completed
+            self.status = 'completed'
+        
+        self.save()

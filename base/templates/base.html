@@ -29,17 +29,18 @@
                 <button type="submit">🔍</button>
             </form>
 
-            {% if user.is_authenticated %}
-                <a href="{% url 'vehicles:my_rentals' %}" class="my-rentals-btn">
-                    My Rentals
-                </a>
-            {% endif %}
        
 
 
         <!-- Login/Signup buttons -->
         <div class="auth-buttons">
             {% if user.is_authenticated %}
+                
+            
+                <a href="{% url 'vehicles:my_rentals' %}" class="my-rentals-btn">
+                    My Rentals
+                </a>
+           
                  <span class="welcome-text">Hi, {{ user.username }}</span>
 
                 <!-- Logout button -->

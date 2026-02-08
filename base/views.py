@@ -12,6 +12,8 @@ from datetime import datetime
 from django.utils import timezone
 from datetime import timedelta
 from .forms import ContactForm,RentalForm
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 
 
 import logging
@@ -114,6 +116,14 @@ def rental_form(request, vehicle_id):
         pickup_time = timezone.make_aware(datetime.fromisoformat(pickup_raw))
         return_time = timezone.make_aware(datetime.fromisoformat(return_raw))
         
+        # ADD THIS: Check if pickup time is in the past
+        if pickup_time < timezone.now():
+            messages.error(
+                request,
+                "Pickup date & time cannot be in the past."
+            )
+            return redirect(request.path)
+        
         if return_time <= pickup_time:
             messages.error(
                 request,
@@ -126,7 +136,7 @@ def rental_form(request, vehicle_id):
             vehicle=vehicle,
             pickup_time=pickup_time,
             return_time=return_time,
-            delivery_address=delivery_address,  # Add this
+            delivery_address=delivery_address,
             status="pending"
         )
 
@@ -221,6 +231,10 @@ def success_page(request):
 
 def my_rentals(request):
     rentals = Rental.objects.filter(user=request.user).select_related("vehicle").order_by("-pickup_time")
+    
+    # Update status for each rental based on current time
+    for rental in rentals:
+        rental.update_status()
 
     return render(request, "my_rentals.html", {
         "rentals": rentals
@@ -229,6 +243,28 @@ def my_rentals(request):
 def vehicle_detail(request, vehicle_id):
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
     return render(request, 'vehicle_detail.html', {'vehicle': vehicle})
+
+
+@login_required
+@require_POST
+def cancel_rental(request, rental_id):
+    try:
+        rental = Rental.objects.get(id=rental_id, user=request.user)
+        
+        # Prevent cancellation if already cancelled or completed
+        if rental.status == 'cancelled':
+            return JsonResponse({'success': False, 'error': 'Already cancelled'})
+        
+        if rental.status == 'completed':
+            return JsonResponse({'success': False, 'error': 'Cannot cancel completed rental'})
+        
+        # Cancel the rental
+        rental.status = 'cancelled'
+        rental.save()
+        return JsonResponse({'success': True})
+        
+    except Rental.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Rental not found'})
 
 
 
