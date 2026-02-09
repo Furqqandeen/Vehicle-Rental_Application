@@ -257,3 +257,12 @@ body {
     background: #d0d0d0;
     transform: translateY(-2px);
 }
+
+@media (max-width:768){
+    
+    .btn-confirm:active {
+        background: #d32f2f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+    }
+}
